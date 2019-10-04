@@ -1,0 +1,16 @@
+<!--**********************************
+            Content body start
+        ***********************************-->
+<div class="content-body">
+  <div class="container-fluid mt-3">
+    <div class="row" *ngIf="myProdInfo">
+      <div class="col-lg-3 col-sm-6" *ngFor="let prod of myProdInfo">
+        <app-gradiant-card [prodDetail]="prod"></app-gradiant-card>
+      </div>
+    </div>
+  </div>
+  <!-- #/ container -->
+</div>
+<!--**********************************
+            Content body end
+        ***********************************-->
