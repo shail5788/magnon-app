@@ -7,9 +7,13 @@ import { Component, OnInit } from "@angular/core";
 })
 export class LoginComponent implements OnInit {
   title;
+  model = {};
   constructor() {}
 
   ngOnInit() {
     this.title = "LOGIN FORM";
+  }
+  onSubmit(form) {
+    console.log(this.model);
   }
 }

@@ -1,38 +1,73 @@
-<div class="login-form-bg h-100">
-  <div class="container h-100">
-    <div class="row justify-content-center h-100">
-      <div class="col-xl-6">
-        <div class="form-input-content">
-          <div class="card login-form mb-0">
-            <div class="card-body pt-5">
-              <a class="text-center" href="index.html">
-                <h4>{{ title }}</h4></a
-              >
+<div class="login-wrapper">
+  <div class="login-form-bg h-100">
+    <div class="container h-100">
+      <div class="row justify-content-center h-100">
+        <div class="col-xl-5">
+          <div class="form-input-content">
+            <div class="card login-form mb-0">
+              <div class="card-body pt-5">
+                <a class="text-center" href="index.html">
+                  <h4>{{ title }}</h4></a
+                >
 
-              <form class="mt-5 mb-5 login-input">
-                <div class="form-group">
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Email"
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="password"
-                    class="form-control"
-                    placeholder="Password"
-                  />
-                </div>
-                <button class="btn login-form__btn submit w-100">
-                  Sign In
-                </button>
-              </form>
-              <p class="mt-5 login-form__footer">
-                Dont have account?
-                <a routerLink="/sign-up" class="text-primary">Sign Up</a>
-                now
-              </p>
+                <form
+                  #loginForm="ngForm"
+                  (ngSubmit)="loginForm.form.valid && onSubmit(loginForm)"
+                  class="mt-5 mb-5 login-input"
+                  novalidate
+                >
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      name="email"
+                      [(ngModel)]="model.email"
+                      #email="ngModel"
+                      class="form-control"
+                      placeholder="Email"
+                      required
+                      email
+                    />
+                    <div
+                      *ngIf="loginForm.submitted && email.invalid"
+                      class="invalid-feedback"
+                    >
+                      <div *ngIf="email.errors.required">
+                        Email is required
+                      </div>
+                      <div *ngIf="email.errors.email">
+                        Invalid email address
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="password"
+                      name="password"
+                      [(ngModel)]="model.password"
+                      #password="ngModel"
+                      class="form-control"
+                      placeholder="Password"
+                      required
+                    />
+                    <div
+                      *ngIf="loginForm.submitted && password.invalid"
+                      class="invalid-feedback"
+                    >
+                      <div *ngIf="password.errors.required">
+                        Password is required
+                      </div>
+                    </div>
+                  </div>
+                  <button class="btn login-form__btn submit w-100">
+                    Sign In
+                  </button>
+                </form>
+                <p class="mt-5 login-form__footer">
+                  Dont have account?
+                  <a routerLink="/sign-up" class="text-primary">Sign Up</a>
+                  now
+                </p>
+              </div>
             </div>
           </div>
         </div>

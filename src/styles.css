@@ -1636,9 +1636,13 @@ textarea.form-control {
 
 .was-validated .custom-file-input:valid:focus ~ .custom-file-label, .custom-file-input.is-valid:focus ~ .custom-file-label {
   box-shadow: 0 0 0 0.2rem rgba(111, 217, 111, 0.25); }
+  .background-class{
+    background: linear-gradient(to top left, #9900ff 0%, #6600cc 100%);
+    min-height: 800px;
+  }
 
 .invalid-feedback {
-  display: none;
+  display: block;
   width: 100%;
   margin-top: 0.25rem;
   font-size: 80%;
