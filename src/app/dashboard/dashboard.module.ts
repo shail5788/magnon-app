@@ -5,12 +5,14 @@ import { DashboardComponentComponent } from "./dashboard-component/dashboard-com
 import { DashboardRoutingModule } from "./dashboard.route.module";
 import { GradiantCardComponent } from "./gradiant-card/gradiant-card.component";
 import { BarGraphComponent } from "./bar-graph/bar-graph.component";
+import { AuthGuard } from "../auth/auth.guard";
 @NgModule({
   declarations: [
     DashboardComponentComponent,
     GradiantCardComponent,
     BarGraphComponent
   ],
-  imports: [CommonModule, DashboardRoutingModule, ChartsModule]
+  imports: [CommonModule, DashboardRoutingModule, ChartsModule],
+  providers: [AuthGuard]
 })
 export class DashboardModule {}

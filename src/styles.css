@@ -1638,7 +1638,8 @@ textarea.form-control {
   box-shadow: 0 0 0 0.2rem rgba(111, 217, 111, 0.25); }
   .background-class{
     background: linear-gradient(to top left, #9900ff 0%, #6600cc 100%);
-    min-height: 800px;
+    background: url(./assets/images/work_bg.jpg) left top repeat;
+    height: 100vh;
   }
 
 .invalid-feedback {

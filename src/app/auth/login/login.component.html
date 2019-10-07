@@ -2,14 +2,16 @@
   <div class="login-form-bg h-100">
     <div class="container h-100">
       <div class="row justify-content-center h-100">
-        <div class="col-xl-5">
+        <div class="col-xl-4 main-container">
           <div class="form-input-content">
             <div class="card login-form mb-0">
               <div class="card-body pt-5">
                 <a class="text-center" href="index.html">
                   <h4>{{ title }}</h4></a
                 >
-
+                <!-- <div class="alert alert-danger" *ngIf="errors">
+                  <p>{{ errors.message }}</p>
+                </div> -->
                 <form
                   #loginForm="ngForm"
                   (ngSubmit)="loginForm.form.valid && onSubmit(loginForm)"
