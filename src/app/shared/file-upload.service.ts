@@ -13,7 +13,6 @@ import { catchError, map } from "rxjs/operators";
 })
 export class FileUploadService {
   apiUrl = "http://localhost:1200/api/v1/file-upload";
-
   constructor(private http: HttpClient) {}
 
   upload(formData) {
