@@ -10,7 +10,10 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
   authenticate(userInfo) {
-    return this.http.post("http://localhost:1200/signin", userInfo);
+    return this.http.post(
+      "http://ec2-13-233-149-86.ap-south-1.compute.amazonaws.com:1200/signin",
+      userInfo
+    );
   }
   isLoggedIn() {
     if (localStorage.getItem("currentUser")) {
