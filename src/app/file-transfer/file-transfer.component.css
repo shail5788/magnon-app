@@ -1,6 +1,19 @@
 .card {
-  margin-left: 25px;
-  margin-right: 25px;
+  margin: 0px;
+}
+.card .card-body{
+  background-color: #D9D9D9;
+}
+.file-structure{
+  background: green;
+  padding: 11px 22px;
+  font-size: 13px;
+  color: #fff;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.file-structure p{
+  margin: 0px;
 }
 .margin-top-40 {
   margin-top: 42px;
@@ -16,5 +29,55 @@
   min-height: 600px !important;
 }
 input[type="checkbox"]:after {
-  border: 1px solid #ced4da;
+  border: 1px solid #000;
 }
+input[type="checkbox"] {
+  background-color: #D9D9D9;
+  
+}
+.form-check-label{
+  color: #333333 !important;
+}
+.dragNdrop{
+  position: relative;
+  position: relative;
+    background: #D9D9D9;
+    border: 15px dotted rgba(35,31,32,0.7) !important;
+    min-height: 354px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-transition: border .5s ease;
+    -o-transition: border .5s ease;
+    -webkit-transition: border .5s ease;
+    transition: border .5s ease;
+}
+.dragNdrop input[type="file"] {
+    cursor: pointer;
+    position: absolute;
+    width: 100%;
+  min-height: 320px;
+  opacity: 0;
+
+}
+.dragNdrop [type="file"] + label{
+font-size: 40px;
+text-align: center;
+padding: 80px 20px;
+}
+.form-group{
+  margin: 0 auto;
+  padding-top: 30px;
+}
+.form-group input{
+  border: 1px solid #000000 !important;
+}
+.send-btn{
+  width: 100%;
+  border: 0px;
+  background-color: #4CAF50 !important;
+}
+.form-group .form-check-inline{
+margin-right: 0px;
+}
+

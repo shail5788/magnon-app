@@ -1,7 +1,8 @@
-<app-header *ngIf="showHeader"></app-header>
+<div id="main-wrapper">
+  <app-header *ngIf="showHeader"></app-header>
 <app-sidebar *ngIf="showSidebar"></app-sidebar>
 <div class="main-content" [ngClass]="{ 'background-class': !showSidebar }">
   <router-outlet></router-outlet>
 </div>
-
+</div>
 <app-footer *ngIf="showFooter"></app-footer>

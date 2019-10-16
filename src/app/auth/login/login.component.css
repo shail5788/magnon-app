@@ -1,13 +1,52 @@
 .form-input-content {
-  margin-top: 60px !important;
+  width: 80%;
+  position: relative;
+  top: 25%;
+  margin: 0 auto;
+}
+.login-left-text{
+    color: #f1f1f1 !important;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    max-width: 493px;
+    width: 90%;
+    top: 78%;
+    left: 30%;
+    position: relative;
+    text-align: center;}
+    .login-left-text h1{
+      color:#f1f1f1 !important;
+    }
+
+.login-left-text img{
+  width: 240px;
 }
 .main-container {
-  position: fixed;
+  /* position: fixed; */
 }
 .card-body {
   padding: 30px 30px;
 }
-
-/* .login-wrapper {
-  background: linear-gradient(to top left, #9900ff 0%, #6600cc 100%);
-} */
+.login-input .form-group .form-control{
+  border: 1px solid #2a2a2a;
+  padding-left: 15px;
+}
+.login-input .form-group .form-control:focus{
+  border: 2px solid #2a2a2a;
+}
+.text-primary{
+  color:#2a2a2a !important;
+}
+.text-primary:hover{
+  color: #c1e73e;
+}
+.mb-5{
+  margin-bottom: 1rem !important;
+}
+.mt-5{
+  margin-top: 1rem !important;
+}
+p{
+  margin: 0px !important;
+}

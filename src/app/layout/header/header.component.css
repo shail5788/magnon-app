@@ -1,0 +1,9 @@
+.nav-header .brand-logo a{
+    padding: 12px;
+}
+.nav-header .brand-logo .brand-title img{
+    width: 170px;
+}
+/* .menu-toggle .nav-header .brand-logo a{
+    padding:10px !important;
+} */
