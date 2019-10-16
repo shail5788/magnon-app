@@ -7311,7 +7311,8 @@ body {
   height: 100%;
   box-sizing: border-box;
   position: relative;
-  max-width: 100%; }
+  max-width: 100%;
+background-color:#fff; }
 
 #main-wrapper {
   opacity: 0;
@@ -7422,7 +7423,7 @@ sub {
   border-radius: 100%; }
 
 .content-body .container-fluid {
-  padding: 15px 30px 0; }
+  padding: 0px; }
 
 @media (max-width: 767px) {
   .content-body .container-fluid {
@@ -7561,7 +7562,7 @@ sub {
   color: #abafb3; }
 
 .footer {
-  padding-left: 15.1875rem;
+  padding-left: 0px;
   background-color: #fff; }
   .footer .copyright {
     padding: 0.9375rem;
@@ -8137,6 +8138,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 .content-body {
   margin-left: 15.1875rem;
+  min-height: 400px !important;
   z-index: 0; }
   @media only screen and (min-width: 1200px) and (max-width: 1350px) {
     .content-body {
@@ -9527,8 +9529,13 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     padding-right: 5px; }
   .login-form__btn.submit {
     padding: 15px 40px;
-    background: #7571f9;
+    background: #2a2a2a;
     font-weight: 700; }
+    .login-form__btn.submit:hover {
+      background: #c1e73e;
+      color:#2a2a2a;
+      
+    }
 
 .login-form__intro p, .login-form__intro h4 {
   margin-bottom: 0;
@@ -10979,7 +10986,7 @@ table.dataTable thead .sorting::after {
 
 .page-titles {
   padding: 0.9375rem 1.875rem;
-  background: #F3F3F9;
+  background: #D9D9D9;
   transition: all .2s ease; }
   @media only screen and (max-width: 767px) {
     .page-titles {
@@ -11319,7 +11326,7 @@ table.dataTable thead .sorting::after {
     border-color: #1295bf; }
 
 .card {
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   border: 0px;
   border-radius: 0.625rem;
   box-shadow: 6px 11px 41px -28px #a99de7; }
