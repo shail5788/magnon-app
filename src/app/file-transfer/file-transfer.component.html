@@ -40,6 +40,7 @@
               />
               <label for="file">Drag & Drop files here
                 or click to upload</label>
+                <span class="file-info" *ngIf="fileInfo.name">{{fileInfo.name}}  {{fileInfo.size |number:"1.2-2"}} MB </span>
               <div *ngIf="fileUpload.status === 'progress'">
                 <div
                   class="progress"

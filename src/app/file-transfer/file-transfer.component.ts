@@ -11,12 +11,17 @@ export class FileTransferComponent implements OnInit {
   constructor(private fs: FileUploadService) {}
   model = { file: File, email: "", subject: "", quality: false, litmus: false };
   fileUpload = {status: '', message: '', filePath: ''};
+  fileInfo={name:"",size:0};
   ngOnInit() {}
   onSelectFile(event) {
-    console.log(event);
+    
     this.model.file = event.target.files[0];
     const files = event.target.files[0];
     this.getFile = files;
+    console.log(this.getFile);
+    this.fileInfo.name=this.getFile.name;
+    this.fileInfo.size=(this.getFile.size)/1024/1024;
+    console.log(this.fileInfo);
   }
   onSubmit(form) {
     const formData = new FormData();
