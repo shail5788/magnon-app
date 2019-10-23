@@ -14,6 +14,14 @@ export class UserManagementComponent implements OnInit {
 
   ngOnInit() {
     this.dataTable = $(this.table.nativeElement);
-    this.dataTable.dataTable();
+    this.dataTable.dataTable({
+      ajax: "http://localhost:1200/api/v1/user",
+      columns: [
+        { data: "name" },
+        { data: "email" },
+        { data: "isActive" },
+        { data: "role" }
+      ]
+    });
   }
 }

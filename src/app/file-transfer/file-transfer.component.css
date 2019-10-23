@@ -78,3 +78,12 @@ input[type="checkbox"] {
 .form-group .form-check-inline {
   margin-right: 0px;
 }
+
+span.file-info {
+  position: relative;
+  top: -76px;
+  left: 31%;
+  font-weight: 700;
+  color: lightslategray;
+  font-size: 18px;
+}

@@ -11,12 +11,21 @@ export class FileTransferComponent implements OnInit {
   constructor(private fs: FileUploadService) {}
   model = { file: File, email: "", subject: "", quality: false, litmus: false };
   fileUpload = { status: "", message: "", filePath: "" };
+  fileInfo = { name: "", size: 0 };
+  fileSizeUnit = "MB";
   ngOnInit() {}
   onSelectFile(event) {
-    console.log(event);
     this.model.file = event.target.files[0];
     const files = event.target.files[0];
     this.getFile = files;
+    console.log(this.getFile);
+    this.fileInfo.name = this.getFile.name;
+    this.fileInfo.size = this.getFile.size / 1024 / 1024;
+    if (this.fileInfo.size > 1024) {
+      this.fileInfo.size = this.fileInfo.size / 1024;
+      this.fileSizeUnit = "GB";
+    }
+    console.log(this.fileInfo);
   }
   onSubmit(form) {
     const formData = new FormData();
@@ -28,7 +37,7 @@ export class FileTransferComponent implements OnInit {
     this.fs.upload(formData).subscribe(
       res => {
         this.fileUpload = res;
-        form.reset();
+
         console.log(res);
       },
       err => {

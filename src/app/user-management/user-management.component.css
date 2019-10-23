@@ -1,0 +1,7 @@
+table.dataTable thead .sorting {
+  /* background-image: url(sort_both.png); */
+}
+
+table.dataTable thead .sorting_asc {
+  /* background-image: url(sort_asc.png);*/
+}
