@@ -10,7 +10,7 @@ export class FileTransferComponent implements OnInit {
   getFile;
   constructor(private fs: FileUploadService) {}
   model = { file: File, email: "", subject: "", quality: false, litmus: false };
-  fileUpload = {status: '', message: '', filePath: ''};
+  fileUpload = { status: "", message: "", filePath: "" };
   ngOnInit() {}
   onSelectFile(event) {
     console.log(event);
@@ -27,7 +27,8 @@ export class FileTransferComponent implements OnInit {
     formData.append("litmus", JSON.stringify(this.model.litmus));
     this.fs.upload(formData).subscribe(
       res => {
-        this.fileUpload=res;
+        this.fileUpload = res;
+        form.reset();
         console.log(res);
       },
       err => {

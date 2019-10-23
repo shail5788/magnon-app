@@ -9,6 +9,7 @@ import { LayoutModule } from "./layout/layout.module";
 import { AuthModule } from "./auth/auth.module";
 import { DashboardModule } from "./dashboard/dashboard.module";
 import { FileTransferModule } from "./file-transfer/file-transfer.module";
+import { UserModule } from "./user-management/user.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +22,8 @@ import { FileTransferModule } from "./file-transfer/file-transfer.module";
     LayoutModule,
     AuthModule,
     DashboardModule,
-    FileTransferModule
+    FileTransferModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
