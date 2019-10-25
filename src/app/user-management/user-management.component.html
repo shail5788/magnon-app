@@ -18,9 +18,9 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card">
-        <div class="card-body">
+        <div class="card-body" *ngIf="persons != null">
           <br />
-          <table #dataTable class="display" style="width:100%">
+          <!-- <table #dataTable class="display" style="width:100%">
             <thead>
               <tr>
                 <th>Name</th>
@@ -30,7 +30,7 @@
               </tr>
             </thead>
 
-            <!-- <tfoot>
+            <tfoot>
               <tr>
                 <th>Name</th>
                 <th>Position</th>
@@ -39,7 +39,36 @@
                 <th>Start date</th>
                 <th>Salary</th>
               </tr>
-            </tfoot> -->
+            </tfoot>
+          </table> -->
+          <table
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger"
+            class="row-border hover table"
+          >
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Active</th>
+                <th>Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let person of persons.data">
+                <td>{{ person.name }}</td>
+                <td>{{ person.email }}</td>
+                <td>
+                  <app-toggle-botton
+                    [id]="person._id"
+                    (changed)="changeStatus($event,this)"
+                  >
+                  </app-toggle-botton>
+                </td>
+                <td><app-button-group></app-button-group></td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
