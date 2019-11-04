@@ -15,7 +15,7 @@
 
   <div class="container-fluid"></div>
   <!-- #/ container -->
-  <div class="row">
+  <div class="row user-management-row">
     <div class="col-md-12">
       <div class="card">
         <div class="card-body" *ngIf="persons != null">
@@ -53,6 +53,7 @@
                 <th>Email</th>
                 <th>Active</th>
                 <th>Role</th>
+                <th>Operation</th>
               </tr>
             </thead>
             <tbody>
@@ -61,12 +62,20 @@
                 <td>{{ person.email }}</td>
                 <td>
                   <app-toggle-botton
-                    [id]="person._id"
-                    (changed)="changeStatus($event,this)"
+                    [user]="person"
+                    (changed)="changeStatus($event, person)"
                   >
                   </app-toggle-botton>
                 </td>
-                <td><app-button-group></app-button-group></td>
+                <td>
+                  <app-button-group
+                    [user]="person"
+                    (click)="changeRole($event, person)"
+                  ></app-button-group>
+                </td>
+                <td>
+                  <app-operation-button [user]="person"></app-operation-button>
+                </td>
               </tr>
             </tbody>
           </table>

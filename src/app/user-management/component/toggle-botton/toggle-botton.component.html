@@ -1,11 +1,12 @@
 <input
   type="checkbox"
-  id="toggle-button-checkbox-{{ id }}"
+  id="toggle-button-checkbox-{{ user._id }}"
   (change)="changed.emit($event.target.checked)"
+  [checked]="isActivated"
 />
 <label
   class="toggle-button-switch"
-  for="toggle-button-checkbox-{{ id }}"
+  for="toggle-button-checkbox-{{ user._id }}"
 ></label>
 <div class="toggle-button-text">
   <div class="toggle-button-text-on">ON</div>

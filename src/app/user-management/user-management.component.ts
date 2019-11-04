@@ -9,6 +9,7 @@ import * as $ from "jquery";
 import "datatables.net";
 import { Subject } from "rxjs";
 import { UserService } from "./../shared/user.service";
+import { ToastrManager } from "ng6-toastr-notifications";
 
 @Component({
   selector: "app-user-management",
@@ -21,11 +22,13 @@ export class UserManagementComponent implements OnDestroy, OnInit {
 
   dtOptions: DataTables.Settings = {};
   persons: any;
+  response;
+  role;
   // We use this trigger because fetching the list of persons can be quite long,
   // thus we ensure the data is fetched before rendering
   dtTrigger: Subject<any> = new Subject();
   checked: boolean;
-  constructor(private users: UserService) {}
+  constructor(private users: UserService, public toastr: ToastrManager) {}
 
   ngOnInit() {
     this.dtOptions = {
@@ -52,7 +55,45 @@ export class UserManagementComponent implements OnDestroy, OnInit {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
   }
-  changeStatus(event) {
-    console.log(event);
+  changeStatus(event, user) {
+    var textMessage;
+    if (event) {
+      textMessage = "User has activated successfully";
+    } else {
+      textMessage = "User has deactivated successfully";
+    }
+    if (confirm("Are you sure you want to activate ")) {
+      this.users.changeUserPermission(event, user).subscribe(
+        res => {
+          this.response = res;
+          if (this.response.response) {
+            this.toastr.successToastr(textMessage, "success");
+          }
+        },
+        err => {}
+      );
+    }
+  }
+  changeRole(event, person) {
+    if (event.target.innerText == "Admin") {
+      this.role = "admin";
+    } else if (event.target.innerText == "User") {
+      this.role = "user";
+    }
+    if (confirm("Are You want to change role?")) {
+      this.users.changeUserRole(this.role, person).subscribe(
+        res => {
+          this.response = res;
+
+          if (this.response.response) {
+            this.toastr.successToastr(
+              "User role has been updated successfully",
+              "success"
+            );
+          }
+        },
+        err => {}
+      );
+    }
   }
 }

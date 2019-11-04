@@ -7,10 +7,16 @@ import { Component, OnInit, Output, Input, EventEmitter } from "@angular/core";
 })
 export class ToggleBottonComponent implements OnInit {
   @Output() changed = new EventEmitter<boolean>();
-  @Input() id;
+  @Input() user;
+  isActivated = false;
   constructor() {}
 
   ngOnInit() {
-    console.log(this.id);
+    console.log(this.user);
+    if (this.user.isActive) {
+      this.isActivated = true;
+    } else {
+      this.isActivated = false;
+    }
   }
 }

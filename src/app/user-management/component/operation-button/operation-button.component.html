@@ -1,0 +1,19 @@
+<div class="btn-group">
+  <button
+    type="button"
+    (click)="UserDetail($event, user)"
+    class="btn btn-success"
+  >
+    View
+  </button>
+  <button type="button" class="btn btn-primary">
+    Edit
+  </button>
+  <button
+    type="button"
+    class="btn btn-danger"
+    (click)="removeUser($event, user)"
+  >
+    Remove
+  </button>
+</div>
