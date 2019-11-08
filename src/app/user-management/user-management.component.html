@@ -1,3 +1,8 @@
+<app-modal-popup
+  *ngIf="createModelOpen"
+  [setting]="popSetting"
+  (close)="closeCreateModal()"
+></app-modal-popup>
 <div class="content-body">
   <div class="row page-titles mx-0">
     <div class="col p-md-0">
@@ -19,6 +24,14 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-body" *ngIf="persons != null">
+          <div class="right-header">
+            <button
+              class="btn btn-info create-button"
+              (click)="openCreateModal()"
+            >
+              Create User
+            </button>
+          </div>
           <br />
           <!-- <table #dataTable class="display" style="width:100%">
             <thead>
@@ -74,7 +87,10 @@
                   ></app-button-group>
                 </td>
                 <td>
-                  <app-operation-button [user]="person"></app-operation-button>
+                  <app-operation-button
+                    [user]="person"
+                    (updatedDataEvent)="afterDelete($event)"
+                  ></app-operation-button>
                 </td>
               </tr>
             </tbody>

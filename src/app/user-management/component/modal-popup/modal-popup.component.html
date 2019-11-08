@@ -1,0 +1,88 @@
+<div class="backdrop" (click)="closePopUp()"></div>
+<div class="create-model-popup">
+  <div class="modal-header">
+    <h4 class="modal-title">{{ setting.title }}</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="closePopUp()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form #userForm="ngForm" (ngSubmit)="userOperation(userForm.value)">
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="uname">User Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="uname"
+          id="uname"
+          #uname="ngModel"
+          [(ngModel)]="userData.name"
+        />
+      </div>
+      <div class="create-user-form">
+        <div class="form-group col-md-6">
+          <div class="">
+            <label for="uemail">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              name="uemail"
+              id="uemail"
+              #uemail="ngModel"
+              [(ngModel)]="userData.email"
+            />
+          </div>
+        </div>
+
+        <div class="form-group col-md-6">
+          <div class="">
+            <label for="role">Role</label>
+            <select
+              name="role"
+              class="form-control"
+              #role="ngModel"
+              [(ngModel)]="userData.role"
+            >
+              <option value="">Select Role</option>
+              <option value="admin">Admin</option>
+              <option value="user"> User</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="upassword"
+          id="upassword"
+          #password="ngModel"
+          [(ngModel)]="userData.password"
+        />
+      </div>
+      <div class="form-group">
+        <label for="cupassword">Confirm Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="cupassword"
+          id="cupassword"
+          #cupassword="ngModel"
+          [(ngModel)]="userData.confirmPassword"
+        />
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-info">{{ setting.button }}</button>
+      <button type="button" class="btn btn-light" (click)="closePopUp()">
+        Close
+      </button>
+    </div>
+  </form>
+</div>

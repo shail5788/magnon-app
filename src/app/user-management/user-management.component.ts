@@ -24,6 +24,14 @@ export class UserManagementComponent implements OnDestroy, OnInit {
   persons: any;
   response;
   role;
+  createModelOpen = false;
+  createUserTitle = "Create User";
+  popSetting = {
+    title: "Create User",
+    formRef: "CreateForm",
+    button: "Creat user"
+  };
+  EditUserTitle = "Edit User";
   // We use this trigger because fetching the list of persons can be quite long,
   // thus we ensure the data is fetched before rendering
   dtTrigger: Subject<any> = new Subject();
@@ -95,5 +103,19 @@ export class UserManagementComponent implements OnDestroy, OnInit {
         err => {}
       );
     }
+  }
+  afterDelete(event) {
+    this.persons = event;
+  }
+
+  openCreateModal() {
+    this.createModelOpen = true;
+  }
+  editOpenModal() {
+    this.createModelOpen = true;
+  }
+
+  closeCreateModal() {
+    this.createModelOpen = false;
   }
 }

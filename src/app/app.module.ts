@@ -10,7 +10,7 @@ import { AuthModule } from "./auth/auth.module";
 import { DashboardModule } from "./dashboard/dashboard.module";
 import { FileTransferModule } from "./file-transfer/file-transfer.module";
 import { UserModule } from "./user-management/user.module";
-
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -23,7 +23,8 @@ import { UserModule } from "./user-management/user.module";
     AuthModule,
     DashboardModule,
     FileTransferModule,
-    UserModule
+    UserModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
