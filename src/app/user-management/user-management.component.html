@@ -2,6 +2,7 @@
   *ngIf="createModelOpen"
   [setting]="popSetting"
   (close)="closeCreateModal()"
+  (updateUser)="getNewUserList($event)"
 ></app-modal-popup>
 <div class="content-body">
   <div class="row page-titles mx-0">

@@ -45,7 +45,7 @@ export class UserManagementComponent implements OnDestroy, OnInit {
     };
     this.users.getusers().subscribe(res => {
       this.persons = res;
-      console.log(this.persons.data);
+      //  console.log(this.persons.data);
       this.dtTrigger.next();
     });
     // this.dataTable = $(this.table.nativeElement);
@@ -117,5 +117,10 @@ export class UserManagementComponent implements OnDestroy, OnInit {
 
   closeCreateModal() {
     this.createModelOpen = false;
+  }
+
+  getNewUserList(event) {
+    // console.log(event);
+    this.persons = event;
   }
 }

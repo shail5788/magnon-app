@@ -12,7 +12,7 @@ export class ToggleBottonComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log(this.user);
+    // console.log(this.user);
     if (this.user.isActive) {
       this.isActivated = true;
     } else {

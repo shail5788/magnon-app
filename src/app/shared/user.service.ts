@@ -37,4 +37,7 @@ export class UserService {
     const userId = user._id;
     return this.http.delete(`http://localhost:1200/api/v1/user/${userId}`);
   }
+  createUser(user) {
+    return this.http.post("http://localhost:1200/api/v1/user", { user });
+  }
 }

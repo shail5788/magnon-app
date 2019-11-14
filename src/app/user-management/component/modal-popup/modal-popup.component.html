@@ -11,7 +11,10 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <form #userForm="ngForm" (ngSubmit)="userOperation(userForm.value)">
+  <form
+    #userForm="ngForm"
+    (ngSubmit)="userForm.form.valid && userOperation(userForm)"
+  >
     <div class="modal-body">
       <div class="form-group">
         <label for="uname">User Name</label>
@@ -22,7 +25,16 @@
           id="uname"
           #uname="ngModel"
           [(ngModel)]="userData.name"
+          required
         />
+        <div
+          *ngIf="userForm.submitted && uname.invalid"
+          class="invalid-feedback"
+        >
+          <div *ngIf="uname.errors.required">
+            Username is required
+          </div>
+        </div>
       </div>
       <div class="create-user-form">
         <div class="form-group col-md-6">
@@ -35,7 +47,20 @@
               id="uemail"
               #uemail="ngModel"
               [(ngModel)]="userData.email"
+              required
+              email
             />
+          </div>
+          <div
+            *ngIf="userForm.submitted && uemail.invalid"
+            class="invalid-feedback"
+          >
+            <div *ngIf="uemail.errors.required">
+              Email is reqiured
+            </div>
+            <div *ngIf="uemail.errors.email">
+              Please enter valid email
+            </div>
           </div>
         </div>
 
@@ -56,17 +81,26 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
+        <label for="upassword">Password</label>
         <input
           type="password"
           class="form-control"
           name="upassword"
           id="upassword"
-          #password="ngModel"
+          #upassword="ngModel"
           [(ngModel)]="userData.password"
+          required
         />
+        <div
+          *ngIf="userForm.submitted && upassword.invalid"
+          class="invalid-feedback"
+        >
+          <div *ngIf="upassword.errors.required">
+            Password is required
+          </div>
+        </div>
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="cupassword">Confirm Password</label>
         <input
           type="password"
@@ -75,8 +109,9 @@
           id="cupassword"
           #cupassword="ngModel"
           [(ngModel)]="userData.confirmPassword"
+          required
         />
-      </div>
+      </div> -->
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-info">{{ setting.button }}</button>
