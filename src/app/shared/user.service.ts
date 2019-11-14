@@ -4,10 +4,11 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root"
 })
 export class UserService {
+  url="http://ec2-13-234-37-40.ap-south-1.compute.amazonaws.com:1200";
   constructor(private http: HttpClient) {}
 
   getusers() {
-    return this.http.get("http://localhost:1200/api/v1/user");
+    return this.http.get(this.url+"/api/v1/user");
   }
   changeUserPermission(value, user) {
     const updateUser = {
@@ -17,7 +18,7 @@ export class UserService {
       email: user.email,
       password: user.password
     };
-    return this.http.put(`http://localhost:1200/api/v1/user/${user._id}`, {
+    return this.http.put(`${this.url}/api/v1/user/${user._id}`, {
       updateUser: updateUser
     });
   }
@@ -29,15 +30,15 @@ export class UserService {
       email: user.email,
       password: user.password
     };
-    return this.http.put(`http://localhost:1200/api/v1/user/${user._id}`, {
+    return this.http.put(`${this.url}/api/v1/user/${user._id}`, {
       updateUser: updateUser
     });
   }
   deleteUser(user) {
     const userId = user._id;
-    return this.http.delete(`http://localhost:1200/api/v1/user/${userId}`);
+    return this.http.delete(`${this.url}/api/v1/user/${userId}`);
   }
   createUser(user) {
-    return this.http.post("http://localhost:1200/api/v1/user", { user });
+    return this.http.post(`${this.url}/api/v1/user`, { user });
   }
 }

@@ -22,7 +22,7 @@ export class FileTransferComponent implements OnInit {
     this.fileInfo.name = this.getFile.name;
     this.fileInfo.size = this.getFile.size / 1024 / 1024;
     if (this.fileInfo.size > 1024) {
-      this.fileInfo.size = this.fileInfo.size / 1024;
+     this.fileInfo.size = this.fileInfo.size / 1024;
       this.fileSizeUnit = "GB";
     }
     console.log(this.fileInfo);
