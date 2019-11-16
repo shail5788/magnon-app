@@ -23,6 +23,22 @@ export class AuthService {
     }
     return false;
   }
+  isAdmin(){
+    
+    const loginUser=JSON.parse(localStorage.getItem("currentUser"))
+    // console.log(loginUser.user.user.role);
+    if(loginUser.user.user.role=="admin"){
+      return true;
+    }else{
+      return false;
+    }
+    
+   
+  }
+  getLoggedInUser(){
+    const loginUser=JSON.parse(localStorage.getItem("currentUser"))
+    return loginUser;
+  }
   logout() {
     localStorage.removeItem("currentUser");
     this.router.navigate(["/login"]);

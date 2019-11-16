@@ -11,6 +11,7 @@ import { DashboardModule } from "./dashboard/dashboard.module";
 import { FileTransferModule } from "./file-transfer/file-transfer.module";
 import { UserModule } from "./user-management/user.module";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import {AuthService} from "./shared/authservice/auth.service"
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -26,7 +27,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     UserModule,
     NgbModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

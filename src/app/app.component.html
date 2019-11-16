@@ -1,6 +1,6 @@
 <div id="main-wrapper">
   <app-header *ngIf="showHeader"></app-header>
-<app-sidebar *ngIf="showSidebar"></app-sidebar>
+<app-sidebar *ngIf="showSidebar" [loggedIn]="logginUser"></app-sidebar>
 <div class="main-content" [ngClass]="{ 'background-class': !showSidebar }">
   <router-outlet></router-outlet>
 </div>

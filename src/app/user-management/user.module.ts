@@ -9,6 +9,8 @@ import { ToggleBottonComponent } from "./component/toggle-botton/toggle-botton.c
 import { ButtonGroupComponent } from "./component/button-group/button-group.component";
 import { OperationButtonComponent } from "./component/operation-button/operation-button.component";
 import { ModalPopupComponent } from "./component/modal-popup/modal-popup.component";
+import {AuthGuard} from "../auth/auth.guard";
+import {RolewisePermissionGuard}from "../auth/rolewise-permission.guard";
 @NgModule({
   declarations: [
     UserManagementComponent,
@@ -18,6 +20,6 @@ import { ModalPopupComponent } from "./component/modal-popup/modal-popup.compone
     ModalPopupComponent
   ],
   imports: [CommonModule, UserRoutingModule, DataTablesModule, FormsModule],
-  providers: [UserService]
+  providers: [UserService,AuthGuard,RolewisePermissionGuard]
 })
 export class UserModule {}

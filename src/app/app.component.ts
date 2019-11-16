@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import {AuthService} from "./shared/authservice/auth.service"
 
 @Component({
   selector: "app-root",
@@ -10,10 +11,12 @@ export class AppComponent implements OnInit {
   showHeader = false;
   showSidebar = false;
   showFooter = false;
+  logginUser;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute,private auth:AuthService) {}
 
   ngOnInit() {
+    this.getLoggedInUser();
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.showHeader =
@@ -24,5 +27,14 @@ export class AppComponent implements OnInit {
           this.activatedRoute.firstChild.snapshot.data.showFooter !== false;
       }
     });
+  }
+  getLoggedInUser(){
+    const loggedUser=  JSON.parse(localStorage.getItem("currentUser"))
+    if(loggedUser.user.user.role=="admin"){
+      this.logginUser=true;
+    }else{
+      this.logginUser=false;
+    }
+    
   }
 }
