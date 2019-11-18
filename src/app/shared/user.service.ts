@@ -4,7 +4,8 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root"
 })
 export class UserService {
-  url="http://ec2-13-234-37-40.ap-south-1.compute.amazonaws.com:1200";
+  // url="http://ec2-13-234-37-40.ap-south-1.compute.amazonaws.com:1200";
+  url="http://localhost:1200";
   constructor(private http: HttpClient) {}
 
   getusers() {
