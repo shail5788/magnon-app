@@ -91,6 +91,7 @@
                   <app-operation-button
                     [user]="person"
                     (updatedDataEvent)="afterDelete($event)"
+                    (getDataForEditModal)="getDataEditModal($event)"
                   ></app-operation-button>
                 </td>
               </tr>

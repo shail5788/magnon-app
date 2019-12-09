@@ -13,6 +13,7 @@ export class FileTransferComponent implements OnInit {
   fileUpload = { status: "", message: "", filePath: "" };
   fileInfo = { name: "", size: 0 };
   fileSizeUnit = "MB";
+  previewLink;
   ngOnInit() {}
   onSelectFile(event) {
     this.model.file = event.target.files[0];
@@ -22,12 +23,12 @@ export class FileTransferComponent implements OnInit {
     this.fileInfo.name = this.getFile.name;
     this.fileInfo.size = this.getFile.size / 1024 / 1024;
     if (this.fileInfo.size > 1024) {
-     this.fileInfo.size = this.fileInfo.size / 1024;
+      this.fileInfo.size = this.fileInfo.size / 1024;
       this.fileSizeUnit = "GB";
     }
     console.log(this.fileInfo);
   }
-  onSubmit(form) {
+  onSubmit(form, formRef) {
     const formData = new FormData();
     formData.append("file", this.getFile);
     formData.append("email", this.model.email);
@@ -39,6 +40,12 @@ export class FileTransferComponent implements OnInit {
         this.fileUpload = res;
 
         console.log(res);
+        this.previewLink = res;
+        setTimeout(() => {
+          formRef.reset();
+          this.fileInfo.name = "";
+          this.fileInfo.size = 0;
+        }, 1000);
       },
       err => {
         console.log(err);

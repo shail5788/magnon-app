@@ -17,6 +17,7 @@ export class OperationButtonComponent implements OnInit {
   };
   updateData: any;
   @Output() updatedDataEvent = new EventEmitter<any>();
+  @Output() getDataForEditModal = new EventEmitter<any>();
   response;
   constructor(private users: UserService, public toastr: ToastrManager) {}
 
@@ -40,6 +41,8 @@ export class OperationButtonComponent implements OnInit {
   }
   openModel(event, user) {
     this.modelOpen = true;
+    // console.log(user);
+    this.getDataForEditModal.emit(user);
   }
   closeEditModal() {
     this.modelOpen = false;

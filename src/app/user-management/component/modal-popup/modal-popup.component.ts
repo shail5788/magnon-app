@@ -17,6 +17,7 @@ import { ToastrManager } from "ng6-toastr-notifications";
 })
 export class ModalPopupComponent implements OnInit {
   @Input() setting;
+
   @Output() close = new EventEmitter<void>();
   @Output() updateUser = new EventEmitter<any>();
   allUser;
@@ -35,7 +36,9 @@ export class ModalPopupComponent implements OnInit {
     public tostr: ToastrManager
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userData = this.users.getCurrentUser();
+  }
 
   closePopUp() {
     this.close.emit();

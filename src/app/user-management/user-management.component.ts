@@ -32,6 +32,7 @@ export class UserManagementComponent implements OnDestroy, OnInit {
     button: "Creat user"
   };
   EditUserTitle = "Edit User";
+  userInfo;
   // We use this trigger because fetching the list of persons can be quite long,
   // thus we ensure the data is fetched before rendering
   dtTrigger: Subject<any> = new Subject();
@@ -122,5 +123,9 @@ export class UserManagementComponent implements OnDestroy, OnInit {
   getNewUserList(event) {
     // console.log(event);
     this.persons = event;
+  }
+  getDataEditModal(event) {
+    this.userInfo = event;
+    this.users.setCurrentUser(this.userInfo);
   }
 }
