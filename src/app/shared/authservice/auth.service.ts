@@ -7,16 +7,13 @@ import { Router } from "@angular/router";
 })
 export class AuthService {
   redirectUrl: string;
-  
+
   //url="http://ec2-13-234-37-40.ap-south-1.compute.amazonaws.com:1200";
-  url="http://localhost:1200";
+  url = "https://magnon-api.herokuapp.com";
   constructor(private http: HttpClient, private router: Router) {}
 
   authenticate(userInfo) {
-    return this.http.post(
-      this.url+"/signin",
-      userInfo
-    );
+    return this.http.post(this.url + "/signin", userInfo);
   }
   isLoggedIn() {
     if (localStorage.getItem("currentUser")) {
@@ -24,20 +21,17 @@ export class AuthService {
     }
     return false;
   }
-  isAdmin(){
-    
-    const loginUser=JSON.parse(localStorage.getItem("currentUser"))
+  isAdmin() {
+    const loginUser = JSON.parse(localStorage.getItem("currentUser"));
     // console.log(loginUser.user.user.role);
-    if(loginUser.user.user.role=="admin"){
+    if (loginUser.user.user.role == "admin") {
       return true;
-    }else{
+    } else {
       return false;
     }
-    
-   
   }
-  getLoggedInUser(){
-    const loginUser=JSON.parse(localStorage.getItem("currentUser"))
+  getLoggedInUser() {
+    const loginUser = JSON.parse(localStorage.getItem("currentUser"));
     return loginUser;
   }
   logout() {

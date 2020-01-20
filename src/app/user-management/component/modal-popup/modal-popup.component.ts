@@ -30,6 +30,7 @@ export class ModalPopupComponent implements OnInit {
     type: ""
   };
   newUser;
+  currentUser;
   constructor(
     private modalService: NgbModal,
     private users: UserService,
@@ -38,6 +39,7 @@ export class ModalPopupComponent implements OnInit {
 
   ngOnInit() {
     this.userData = this.users.getCurrentUser();
+    this.currentUser = this.users.getCurrentUser();
   }
 
   closePopUp() {
@@ -47,27 +49,48 @@ export class ModalPopupComponent implements OnInit {
     this.modalService.open(content, { centered: true });
   }
   userOperation(formObj) {
-    this.userData.type = this.setting.button;
+    // this.userData.type = this.setting.button;
     console.log(formObj);
     console.log(this.userData);
-    this.users.createUser(this.userData).subscribe(
-      res => {
-        console.log(res);
-        this.tostr.successToastr("User Created successfully", "success");
-        this.getUpdateUserData(data => {
-          console.log(data);
-          this.updateUser.emit(data);
-          formObj.form.reset();
-          this.close.emit();
-        });
-      },
-      err => {
-        console.log(err.error.error);
-        if (err.error.error.code == "11000") {
-          this.tostr.errorToastr("Sorry! This email is already exist", "Opps!");
+    if (this.setting.button == "Creat user") {
+      this.users.createUser(this.userData).subscribe(
+        res => {
+          console.log(res);
+          this.tostr.successToastr("User Created successfully", "success");
+          this.getUpdateUserData(data => {
+            console.log(data);
+            this.updateUser.emit(data);
+            formObj.form.reset();
+            this.close.emit();
+          });
+        },
+        err => {
+          console.log(err.error.error);
+          if (err.error.error.code == "11000") {
+            this.tostr.errorToastr(
+              "Sorry! This email is already exist",
+              "Opps!"
+            );
+          }
         }
-      }
-    );
+      );
+    } else {
+      this.users.updateUser(this.currentUser, this.currentUser._id).subscribe(
+        res => {
+          console.log(res);
+          this.tostr.successToastr("User updated successfully", "success");
+          this.getUpdateUserData(data => {
+            console.log(data);
+            this.updateUser.emit(data);
+            //formObj.form.reset();
+            this.close.emit();
+          });
+        },
+        err => {
+          console.log(err.error.error);
+        }
+      );
+    }
   }
   getUpdateUserData(callback) {
     this.users.getusers().subscribe(

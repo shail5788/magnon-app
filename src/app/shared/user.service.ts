@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class UserService {
   // url="http://ec2-13-234-37-40.ap-south-1.compute.amazonaws.com:1200";
-  url = "http://localhost:1200";
+  url = "https://magnon-api.herokuapp.com";
   userData = {
     name: "",
     email: "",
@@ -49,6 +49,9 @@ export class UserService {
   }
   createUser(user) {
     return this.http.post(`${this.url}/api/v1/user`, { user });
+  }
+  updateUser(user, id) {
+    return this.http.patch(`${this.url}/api/v1/user/${id}`, { user });
   }
   setCurrentUser(currentUser) {
     this.userData = currentUser;

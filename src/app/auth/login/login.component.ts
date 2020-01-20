@@ -10,7 +10,7 @@ import { ToastrManager } from "ng6-toastr-notifications";
 })
 export class LoginComponent implements OnInit {
   title;
-  model = {};
+  model = { email: "", password: "" };
   isLogin = false;
 
   currentUser;
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
           this.errors = null;
           this.toastr.successToastr("Login successfully", "success");
           setTimeout(function() {
-            window.location.href = "/dashboard";
+            window.location.href = "file-transfer";
           }, 1000);
 
           // this.router.navigate(["/dashboard"]);

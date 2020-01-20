@@ -12,9 +12,8 @@ import { catchError, map } from "rxjs/operators";
   providedIn: "root"
 })
 export class FileUploadService {
-  
   // apiUrl="http://ec2-13-234-37-40.ap-south-1.compute.amazonaws.com:1200/api/v1/file-upload";
-  apiUrl="http://localhost:1200/api/v1/file-upload";
+  apiUrl = "https://magnon-api.herokuapp.com/api/v1/file-upload";
   constructor(private http: HttpClient) {}
 
   upload(formData) {

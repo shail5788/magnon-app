@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FileUploadService } from "../shared/file-upload.service";
+import { ToastrManager } from "ng6-toastr-notifications";
 
 @Component({
   selector: "app-file-transfer",
@@ -8,7 +9,7 @@ import { FileUploadService } from "../shared/file-upload.service";
 })
 export class FileTransferComponent implements OnInit {
   getFile;
-  constructor(private fs: FileUploadService) {}
+  constructor(private fs: FileUploadService, public toastr: ToastrManager) {}
   model = { file: File, email: "", subject: "", quality: false, litmus: false };
   fileUpload = { status: "", message: "", filePath: "" };
   fileInfo = { name: "", size: 0 };
@@ -39,10 +40,16 @@ export class FileTransferComponent implements OnInit {
       res => {
         this.fileUpload = res;
 
-        console.log(res);
+        console.log(res.message);
+        if (typeof res != "undefined" && typeof res != undefined) {
+          if (res.message == 100) {
+            this.toastr.successToastr("EDM has been shared", "success");
+          }
+        }
         this.previewLink = res;
         setTimeout(() => {
-          formRef.reset();
+          formRef.resetForm();
+
           this.fileInfo.name = "";
           this.fileInfo.size = 0;
         }, 1000);
