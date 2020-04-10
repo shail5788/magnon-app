@@ -1,9 +1,16 @@
 <app-modal-popup
-  *ngIf="createModelOpen"
+*ngIf="createModelOpen"
   [setting]="popSetting"
   (close)="closeCreateModal()"
   (updateUser)="getNewUserList($event)"
+  [createModelActive]="createModelActive"
 ></app-modal-popup>
+<app-create-modal 
+*ngIf="newUserModalOpen"
+(close)="closeNewUserModal()"
+(getUpdateUserData)="getNewUserList($event)">
+
+</app-create-modal>
 <div class="content-body">
   <div class="row page-titles mx-0">
     <div class="col p-md-0">
@@ -28,33 +35,13 @@
           <div class="right-header">
             <button
               class="btn btn-info create-button"
-              (click)="openCreateModal()"
+              (click)="openCreateUserModal($event)"
             >
               Create User
             </button>
           </div>
           <br />
-          <!-- <table #dataTable class="display" style="width:100%">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Type</th>
-                <th>Role</th>
-              </tr>
-            </thead>
-
-            <tfoot>
-              <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
-              </tr>
-            </tfoot>
-          </table> -->
+         
           <table
             datatable
             [dtOptions]="dtOptions"
@@ -71,13 +58,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let person of persons.data">
+              <tr *ngFor="let person of persons.result">
                 <td>{{ person.name }}</td>
                 <td>{{ person.email }}</td>
                 <td>
                   <app-toggle-botton
                     [user]="person"
                     (changed)="changeStatus($event, person)"
+
                   >
                   </app-toggle-botton>
                 </td>
@@ -85,6 +73,8 @@
                   <app-button-group
                     [user]="person"
                     (click)="changeRole($event, person)"
+                    [isActiveUser]="isUser"
+                    [isAdminUser]="isAdmin"
                   ></app-button-group>
                 </td>
                 <td>

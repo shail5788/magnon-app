@@ -26,27 +26,31 @@ export class LoginComponent implements OnInit {
     this.title = "LOGIN FORM";
   }
   onSubmit(form) {
+  
     this.authService.authenticate(this.model).subscribe(
       res => {
         this.currentUser = res;
-
+        
         if (this.currentUser.response) {
-          localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
+          localStorage.setItem("currentUser", JSON.stringify(this.currentUser.result));
           this.errors = null;
           this.toastr.successToastr("Login successfully", "success");
           setTimeout(function() {
-            window.location.href = "file-transfer";
+             window.location.href = "file-transfer";
           }, 1000);
 
           // this.router.navigate(["/dashboard"]);
+          var loggedInUser=JSON.parse(localStorage.getItem("currentUser"));
+       
         }
       },
       err => {
         this.errors = err.error;
+        
         this.toastr.errorToastr(this.errors.message, "Oops!");
         this.router.navigate(["/"]);
 
-        console.log(this.errors);
+       
       }
     );
   }

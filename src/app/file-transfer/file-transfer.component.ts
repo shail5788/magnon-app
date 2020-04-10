@@ -31,34 +31,55 @@ export class FileTransferComponent implements OnInit {
   }
   onSubmit(form, formRef) {
     const formData = new FormData();
+    
+    const currentUser=JSON.parse(localStorage.getItem("currentUser"));
+    const loggedInUser=currentUser.user.user[0];
+    delete loggedInUser.password;
+    
+    
     formData.append("file", this.getFile);
     formData.append("email", this.model.email);
     formData.append("subject", this.model.subject);
     formData.append("quality", JSON.stringify(this.model.quality));
     formData.append("litmus", JSON.stringify(this.model.litmus));
+    formData.append("loggedInUser",JSON.stringify(loggedInUser));
+    
+    
+    
     this.fs.upload(formData).subscribe(
       res => {
         this.fileUpload = res;
-
-        console.log(res.message);
+     
+       // console.log(res);
         if (typeof res != "undefined" && typeof res != undefined) {
           if (res.message == 100) {
             this.toastr.successToastr("EDM has been shared", "success");
           }
         }
-        this.previewLink = res;
+      //  console.log(res.result);
+        if (typeof res != "undefined" && typeof res != undefined) {
+          setTimeout(()=>{
+              
+            if(typeof res.result!=undefined && typeof res.result!="undefined"){
+              console.log(res.result);
+              this.previewLink = res.result.preview_url;
+              console.log(this.previewLink);
+            }
+            
+          },25000)
+         
+        }
         setTimeout(() => {
-          formRef.resetForm();
+         // formRef.resetForm();
 
-          this.fileInfo.name = "";
-          this.fileInfo.size = 0;
+        //  this.fileInfo.name = "";
+         // this.fileInfo.size = 0;
         }, 1000);
       },
       err => {
         console.log(err);
       }
     );
-    console.log(form);
-    console.log(this.model);
+   
   }
 }

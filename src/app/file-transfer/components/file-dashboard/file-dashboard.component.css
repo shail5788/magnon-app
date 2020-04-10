@@ -1,0 +1,27 @@
+table.dataTable thead .sorting {
+    /* background-image: url(sort_both.png); */
+  }
+  
+  table.dataTable thead .sorting_asc {
+    /* background-image: url(sort_asc.png);*/
+  }
+  table thead tr th {
+    color: #504a4a;
+  }
+  table tbody tr td {
+    color: #504a4a;
+    font-weight: 500;
+  }
+  .card {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+  .user-management-row {
+    background: #d9d9d9;
+  }
+  .create-button {
+    float: right;
+  }
+  

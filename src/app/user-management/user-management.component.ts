@@ -24,6 +24,8 @@ export class UserManagementComponent implements OnDestroy, OnInit {
   persons: any;
   response;
   role;
+  isAdmin=false;
+  isUser=false;
   createModelOpen = false;
   createUserTitle = "Create User";
   popSetting = {
@@ -31,34 +33,29 @@ export class UserManagementComponent implements OnDestroy, OnInit {
     formRef: "CreateForm",
     button: "Creat user"
   };
+  createModelActive=false;
   EditUserTitle = "Edit User";
   userInfo;
   // We use this trigger because fetching the list of persons can be quite long,
   // thus we ensure the data is fetched before rendering
   dtTrigger: Subject<any> = new Subject();
   checked: boolean;
+  newUserModalOpen: boolean=false;
   constructor(private users: UserService, public toastr: ToastrManager) {}
 
+  
   ngOnInit() {
     this.dtOptions = {
       pagingType: "full_numbers",
       pageLength: 2
     };
+   
     this.users.getusers().subscribe(res => {
       this.persons = res;
-      //  console.log(this.persons.data);
+      console.log(this.persons);
       this.dtTrigger.next();
     });
-    // this.dataTable = $(this.table.nativeElement);
-    // this.dataTable.dataTable({
-    //   ajax: "http://localhost:1200/api/v1/user",
-    //   columns: [
-    //     { data: "name" },
-    //     { data: "email" },
-    //     { data: "isActive" },
-    //     { data: "role" }
-    //   ]
-    // });
+  
   }
   ngOnDestroy(): void {
     // Do not forget to unsubscribe the event
@@ -75,7 +72,7 @@ export class UserManagementComponent implements OnDestroy, OnInit {
       this.users.changeUserPermission(event, user).subscribe(
         res => {
           this.response = res;
-          if (this.response.response) {
+          if (this.response.result) {
             this.toastr.successToastr(textMessage, "success");
           }
         },
@@ -84,17 +81,28 @@ export class UserManagementComponent implements OnDestroy, OnInit {
     }
   }
   changeRole(event, person) {
+    console.log(event)
     if (event.target.innerText == "Admin") {
-      this.role = "admin";
+      console.log("admin--");
+      this.role = "1";
     } else if (event.target.innerText == "User") {
-      this.role = "user";
+      console.log("user")
+       this.role = "2";
     }
+    console.log("role--",this.role);
     if (confirm("Are You want to change role?")) {
+      if(this.role=="1"){
+        this.isAdmin=true;
+        this.isUser=false;
+      }else{
+        this.isAdmin=false;
+        this.isUser=true;
+      }
       this.users.changeUserRole(this.role, person).subscribe(
         res => {
           this.response = res;
-
-          if (this.response.response) {
+         console.log(this.response)
+          if (this.response.result) {
             this.toastr.successToastr(
               "User role has been updated successfully",
               "success"
@@ -109,17 +117,25 @@ export class UserManagementComponent implements OnDestroy, OnInit {
     this.persons = event;
   }
 
-  openCreateModal() {
-    this.createModelOpen = true;
+  // openCreateModal(event) {
+  
+  //   this.createModelOpen = true;
+  //   this.createModelActive=true;
+  // }
+  openCreateUserModal($event){
+    this.newUserModalOpen=true;
   }
   editOpenModal() {
+    this.createModelActive=false;
     this.createModelOpen = true;
   }
 
   closeCreateModal() {
     this.createModelOpen = false;
   }
-
+  closeNewUserModal(){
+    this.newUserModalOpen=false;
+  }
   getNewUserList(event) {
     // console.log(event);
     this.persons = event;

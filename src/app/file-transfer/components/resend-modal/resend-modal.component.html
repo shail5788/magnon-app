@@ -1,0 +1,65 @@
+<div class="backdrop" (click)="closePopUp()"></div>
+<div class="create-model-popup">
+  <div class="modal-header">
+    <h4 class="modal-title">Re-send EDM</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="closePopUp()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form
+    #resendEdm="ngForm"
+    (ngSubmit)="resendEdm.form.valid && reSendEnd(resendEdm)"
+  >
+    <div class="modal-body">
+      
+      <div class="create-user-form">
+        <div class="form-group col-md-12">
+          <div class="">
+            <label for="uemail">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              name="uemail"
+              id="uemail"
+              #uemail="ngModel"
+              [(ngModel)]="addUserData.email"
+              required
+              email
+              UniqueEmail
+            />
+          </div>
+          <div
+            *ngIf="resendEdm.submitted && uemail.invalid"
+            class="invalid-feedback"
+          >
+            <div *ngIf="uemail.errors.required">
+              Email is reqiured
+            </div>
+            <div *ngIf="uemail.errors.email">
+              Please enter valid email
+            </div>
+            
+            <div class="text-danger" *ngIf="uemail.invalid && (uemail.dirty || uemail.tauched)">
+              Email is already exist
+           </div>
+          </div>
+         
+        </div>
+
+       
+      </div>
+     
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-info">Send Email</button>
+      <button type="button" class="btn btn-light" (click)="closePopUp()">
+        Close
+      </button>
+    </div>
+  </form>
+</div>

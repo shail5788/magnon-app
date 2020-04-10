@@ -17,6 +17,7 @@ import { ToastrManager } from "ng6-toastr-notifications";
 })
 export class ModalPopupComponent implements OnInit {
   @Input() setting;
+  @Input() createModelActive;
 
   @Output() close = new EventEmitter<void>();
   @Output() updateUser = new EventEmitter<any>();
@@ -26,9 +27,10 @@ export class ModalPopupComponent implements OnInit {
     email: "",
     password: "",
     // confirmPassword: "",
-    role: "",
-    type: ""
+    user_type: "",
+  //  type: ""
   };
+  userList;
   newUser;
   currentUser;
   constructor(
@@ -40,6 +42,7 @@ export class ModalPopupComponent implements OnInit {
   ngOnInit() {
     this.userData = this.users.getCurrentUser();
     this.currentUser = this.users.getCurrentUser();
+    
   }
 
   closePopUp() {
@@ -50,22 +53,30 @@ export class ModalPopupComponent implements OnInit {
   }
   userOperation(formObj) {
     // this.userData.type = this.setting.button;
-    console.log(formObj);
-    console.log(this.userData);
+    
+ 
     if (this.setting.button == "Creat user") {
+      //console.log("shaiendra verma")
+      
+      this.userData.name=formObj.value.uname;
+      this.userData.email=formObj.value.uemail;
+      this.userData.password=formObj.value.upassword;
+      this.userData.user_type=formObj.value.role;
+     // console.log(this.userData)
+      
       this.users.createUser(this.userData).subscribe(
         res => {
-          console.log(res);
+          //console.log(res);
           this.tostr.successToastr("User Created successfully", "success");
           this.getUpdateUserData(data => {
-            console.log(data);
+            //console.log(data);
             this.updateUser.emit(data);
             formObj.form.reset();
             this.close.emit();
           });
         },
         err => {
-          console.log(err.error.error);
+        //  console.log(err.error.error);
           if (err.error.error.code == "11000") {
             this.tostr.errorToastr(
               "Sorry! This email is already exist",
@@ -75,7 +86,8 @@ export class ModalPopupComponent implements OnInit {
         }
       );
     } else {
-      this.users.updateUser(this.currentUser, this.currentUser._id).subscribe(
+      console.log("sadf");
+      this.users.updateUser(this.currentUser, this.currentUser.id).subscribe(
         res => {
           console.log(res);
           this.tostr.successToastr("User updated successfully", "success");

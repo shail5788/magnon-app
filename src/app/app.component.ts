@@ -30,11 +30,16 @@ export class AppComponent implements OnInit {
   }
   getLoggedInUser(){
     const loggedUser=  JSON.parse(localStorage.getItem("currentUser"))
-    if(loggedUser.user.user.role=="admin"){
-      this.logginUser=true;
-    }else{
-      this.logginUser=false;
+   // console.log(loggedUser);
+    if(loggedUser!=null){
+      console.log(loggedUser);
+      if(loggedUser.user.user[0].user_type=="1"){
+        this.logginUser=true;
+      }else{
+        this.logginUser=false;
+      }
     }
+    
     
   }
 }

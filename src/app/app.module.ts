@@ -1,5 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
 import { ToastrModule } from "ng6-toastr-notifications";
 import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -12,6 +13,7 @@ import { FileTransferModule } from "./file-transfer/file-transfer.module";
 import { UserModule } from "./user-management/user.module";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import {AuthService} from "./shared/authservice/auth.service"
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -31,3 +33,4 @@ import {AuthService} from "./shared/authservice/auth.service"
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+

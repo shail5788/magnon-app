@@ -24,20 +24,22 @@ export class OperationButtonComponent implements OnInit {
   ngOnInit() {}
   UserDetail(event, user) {}
   removeUser(event, user) {
-    this.users.deleteUser(user).subscribe(
-      res => {
-        this.response = res;
-        console.log(this.response);
-        this.users.getusers().subscribe(
-          res => {
-            this.updateData = res;
-            this.updatedDataEvent.emit(this.updateData);
-          },
-          err => {}
-        );
-      },
-      err => {}
-    );
+    if (confirm("Are you sure that you to delete  ")) {
+          this.users.deleteUser(user).subscribe(
+            res => {
+              this.response = res;
+              console.log(this.response);
+              this.users.getusers().subscribe(
+                res => {
+                  this.updateData = res;
+                  this.updatedDataEvent.emit(this.updateData);
+                },
+                err => {}
+              );
+            },
+            err => {}
+          );
+    }
   }
   openModel(event, user) {
     this.modelOpen = true;

@@ -1,0 +1,60 @@
+<div class="content-body">
+  <div class="row page-titles mx-0">
+    <div class="col p-md-0">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="javascript:void(0)">File Management</a>
+        </li>
+        <li class="breadcrumb-item active">
+          <a href="javascript:void(0)">File Dashboard</a>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <!-- row -->
+
+  <div class="container-fluid"></div>
+  <!-- #/ container -->
+  <div class="row user-management-row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body" >
+          <div class="right-header">
+            <!-- <button
+              class="btn btn-info create-button"
+              (click)="openCreateUserModal($event)"
+            >
+              Create User
+            </button> -->
+          </div>
+          <br />
+         
+          <table
+            class="row-border hover table"
+          >
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Email</th>
+                <th>Uploaded By</th>
+                <th>Uploaded At</th>
+                <th>Operation</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="files">
+               <tr *ngFor="let file of files.result">
+                  <td>{{file.file_title}}</td>
+                  <td>{{file.sent_to}}</td>
+                  <td>{{file.send_by}}</td>
+                  <td>{{file.uploaded_at}}</td>
+                  <td><app-file-operation [file]="file" ></app-file-operation></td>
+
+               </tr>
+            
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
